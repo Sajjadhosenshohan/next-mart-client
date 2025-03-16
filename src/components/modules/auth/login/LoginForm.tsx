@@ -17,7 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useState } from "react";
 import { loginSchema } from "./LoginValidation";
-import { loginUser } from "@/services/auth";
+import { loginUser, reCaptchaTokenVerification } from "@/services/auth";
 import Logo from "@/app/assets/Logo";
 
 export default function LoginForm() {
@@ -33,8 +33,8 @@ export default function LoginForm() {
 
   const handleReCaptcha = async (value: string | null) => {
     try {
-    //   const res = await reCaptchaTokenVerification(value!);
-      const res = {success: true};
+      const res = await reCaptchaTokenVerification(value!);
+
       if (res?.success) {
         setReCaptchaStatus(true);
       }
@@ -94,16 +94,16 @@ export default function LoginForm() {
             )}
           />
 
-          {/* <div className="flex mt-3 w-full">
+          <div className="flex mt-3 w-full">
             <ReCAPTCHA
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY as string}
               onChange={handleReCaptcha}
               className="mx-auto"
             />
-          </div> */}
+          </div>
 
           <Button
-            // disabled={reCaptchaStatus ? false : true}
+            disabled={reCaptchaStatus ? false : true}
             type="submit"
             className="mt-5 w-full"
           >
