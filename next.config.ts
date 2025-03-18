@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    turbo: {
+      rules: { "*.mdx": ["mdx-loader"] }, // Default loaders (এটা দিলে Turbo Pack ঠিকমতো কাজ করবে)
+    },
+  },
 };
 
 export default nextConfig;
