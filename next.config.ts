@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
       rules: { "*.mdx": ["mdx-loader"] }, // Default loaders (এটা দিলে Turbo Pack ঠিকমতো কাজ করবে)
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**'
+      },
+    ],
+  },
 };
 
 export default nextConfig;
